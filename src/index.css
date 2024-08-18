@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.container {
+  display: flex;
+  background-color: #acacb6;
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  height: 95vh; /* Make container height 100% of viewport height */
+  box-sizing: border-box; /* Ensure padding is included in height calculation */
+}
+
+.history-section {
+  flex: 1;
+  margin-right: 20px;
+  border-right: 1px solid #e9ecef;
+  padding-right: 20px;
+}
+
+.url-shortener-section {
+  flex: 2;
+}
+
+.url-input {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.url-input input {
+  flex: 1;
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+}
+
+.shortened-url {
+  display: flex;
+  align-items: center;
+}
+
+.shortened-url Button {
+  margin-left: 10px;
+}
