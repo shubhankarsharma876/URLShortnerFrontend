@@ -22,7 +22,7 @@ function Shortner() {
     setOriginalUrl(value);
 
     if (!validateUrl(value)) {
-      setError("Please enter a valid URL");
+      setError("Please enter a valid URL"); 
     } else {
       setError("");
     }
@@ -33,9 +33,16 @@ function Shortner() {
       try {
         const response = await axios.post('http://localhost:8080/api/shorten', { originalUrl });
         console.log(response);
-        
+
+        const shortenedUrlValue = response.data.id;
+
+        // Check if the URL is already in localStorage
+        if (!localStorage.getItem(originalUrl)) {
+          localStorage.setItem(originalUrl, "http://localhost:8080/api/"+shortenedUrlValue);
+        }
+
         // Set the shortened URL returned from the backend
-        setShortenedUrl(response.data.id);
+        setShortenedUrl(shortenedUrlValue);
       } catch (err) {
         console.error("Error shortening URL:", err);
         setError("Failed to shorten the URL. Please try again.");
@@ -68,11 +75,14 @@ function Shortner() {
       {shortenedUrl && (
         <div className="url-shortener-section">
           <div className="shortened-url">
-            <Textarea value={"http://localhost:8080/api/"+shortenedUrl} readOnly />
+            <Textarea 
+              value={`http://localhost:8080/api/${shortenedUrl}`} 
+              readOnly 
+            />
             <Button
               variant="secondary"
               className="bg-gray-500 rounded-xl px-10"
-              onClick={() => navigator.clipboard.writeText(shortenedUrl)}
+              onClick={() => navigator.clipboard.writeText(`http://localhost:8080/api/${shortenedUrl}`)}
             >
               Copy
             </Button>
