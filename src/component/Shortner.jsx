@@ -32,7 +32,10 @@ function Shortner() {
     if (!error && originalUrl) {
       try {
         const response = await axios.post('http://localhost:8080/api/shorten', { originalUrl });
-        setShortenedUrl(response.data.shortenedUrl);
+        console.log(response);
+        
+        // Set the shortened URL returned from the backend
+        setShortenedUrl(response.data.id);
       } catch (err) {
         console.error("Error shortening URL:", err);
         setError("Failed to shorten the URL. Please try again.");
@@ -65,7 +68,7 @@ function Shortner() {
       {shortenedUrl && (
         <div className="url-shortener-section">
           <div className="shortened-url">
-            <Textarea value={shortenedUrl} readOnly />
+            <Textarea value={"http://localhost:8080/api/"+shortenedUrl} readOnly />
             <Button
               variant="secondary"
               className="bg-gray-500 rounded-xl px-10"
@@ -81,4 +84,3 @@ function Shortner() {
 }
 
 export default Shortner;
-

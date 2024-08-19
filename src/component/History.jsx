@@ -35,7 +35,7 @@ function History() {
 
     return (
         <div className="history-section">
-            <ScrollArea className="h-72 w-full rounded-md border">
+            <ScrollArea className="h-max w-full rounded-md border">
                 <div className="p-4">
                     <h4 className="mb-4 text-3xl font-medium leading-none text-center">History</h4>
                     <h6 className="text-center pb-8">All your previous URLs! Click and get it copied 📓</h6>
